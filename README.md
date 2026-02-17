@@ -72,7 +72,7 @@
 
 ## 📦 Instalación
 
-### Prerequisitos
+### Prerrequisitos
 
 Antes de comenzar, asegúrate de tener instalado:
 
@@ -115,6 +115,9 @@ npm run dev
 El servidor estará disponible en: `http://localhost:3000`
 
 ### Credenciales de prueba
+
+> ⚠️ **Nota de Seguridad**: Estas son credenciales de ejemplo para entornos de desarrollo únicamente. 
+> En producción, asegúrate de cambiar todas las contraseñas y usar credenciales seguras.
 
 | Rol | Usuario | Contraseña |
 |-----|---------|------------|
