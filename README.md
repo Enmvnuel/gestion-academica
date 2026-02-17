@@ -121,9 +121,9 @@ El servidor estará disponible en: `http://localhost:3000`
 
 | Rol | Usuario | Contraseña |
 |-----|---------|------------|
-| 👨‍💼 Admin | admin@escuela.com | admin123 |
-| 👨‍🏫 Docente | docente@escuela.com | docente123 |
-| 👨‍🎓 Estudiante | estudiante@escuela.com | estudiante123 |
+| 👨‍💼 Admin | admin@escuela.com | Admin@2024! |
+| 👨‍🏫 Docente | docente@escuela.com | Docente@2024! |
+| 👨‍🎓 Estudiante | estudiante@escuela.com | Estudiante@2024! |
 
 ---
 
@@ -217,8 +217,8 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más det
 
 ¿Tienes preguntas o sugerencias? 
 
-- 📧 Email: contacto@gestion-academica.com
 - 💬 Issues: [GitHub Issues](https://github.com/Enmvnuel/gestion-academica/issues)
+- 🌐 Discusiones: [GitHub Discussions](https://github.com/Enmvnuel/gestion-academica/discussions)
 
 ---
 
