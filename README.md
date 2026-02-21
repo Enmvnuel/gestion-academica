@@ -3,10 +3,10 @@
 <div align="center">
 
 ![Academic Management](https://img.shields.io/badge/Gestión-Académica-blue?style=for-the-badge)
-![CRUD](https://img.shields.io/badge/CRUD-Complete-success?style=for-the-badge)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.0.3-brightgreen?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge)
 
-**Una plataforma completa para la gestión educativa moderna** 🚀
+**Sistema web para administrar procesos académicos con roles y reportes** 🚀
 
 </div>
 
@@ -14,43 +14,35 @@
 
 ## 📖 Descripción
 
-**Gestión Académica** es una aplicación web diseñada para facilitar la administración educativa en instituciones académicas. Este sistema proporciona una solución integral de **CRUD** (Crear, Leer, Actualizar, Eliminar) para gestionar usuarios, cursos, calificaciones y más.
+**Sistema Web de Gestión Académica** es una aplicación Spring Boot para administrar estudiantes, docentes, cursos, matrículas y notas. Incluye autenticación por roles (Admin, Docente, Estudiante), paneles personalizados y reportes en PDF con JasperReports.
 
 ### 🎯 ¿Para quién es?
 
-- 👨‍💼 **Administradores**: Control total del sistema
-- 👨‍🏫 **Docentes**: Gestión de clases y estudiantes
-- 👨‍🎓 **Usuarios/Estudiantes**: Acceso a información académica
+- 👨‍💼 **Administradores**: Gestión general del sistema y reportes
+- 👨‍🏫 **Docentes**: Registro y consulta de notas
+- 👨‍🎓 **Estudiantes**: Consulta de matrículas y calificaciones
 
 ---
 
 ## ✨ Características Principales
 
 ### 🔐 Sistema de Autenticación
-- ✅ Login seguro con roles diferenciados
-- ✅ Gestión de permisos por usuario
-- ✅ Recuperación de contraseña
+- ✅ Login con roles diferenciados
+- ✅ Acceso a paneles por tipo de usuario
 
 ### 👨‍💼 Panel de Administración
-- 📊 Dashboard con estadísticas en tiempo real
-- 👥 Gestión completa de usuarios (CRUD)
-- 🏫 Administración de cursos y materias
-- 📚 Gestión de periodos académicos
-- 📋 Reportes y exportación de datos
+- 👥 Mantenimiento de docentes y estudiantes (CRUD)
+- 🏫 Gestión de cursos
+- 📝 Registro y consulta de matrículas
+- 📊 Reportes en PDF (matriculados y notas)
 
 ### 👨‍🏫 Funcionalidades para Docentes
-- 📝 Registro de asistencia
-- 📊 Ingreso y gestión de calificaciones
-- 📖 Gestión de contenido de clases
-- 👨‍🎓 Visualización de lista de estudiantes
-- 📧 Comunicación con estudiantes
+- 📊 Registro de calificaciones
+- 🔍 Consulta de notas por estudiante/curso
 
 ### 👨‍🎓 Portal del Estudiante
-- 📱 Visualización de calificaciones
-- 📅 Horarios de clases
-- 📚 Acceso a materiales de estudio
-- 📊 Seguimiento de progreso académico
-- 💬 Mensajería interna
+- 📅 Consulta de matrículas
+- 📈 Consulta de notas
 
 ---
 
@@ -58,13 +50,11 @@
 
 <div align="center">
 
-| Frontend | Backend | Base de Datos |
-|:--------:|:-------:|:-------------:|
-| 🎨 HTML5 | ⚙️ Node.js | 🗄️ MySQL |
-| 🎨 CSS3 | ⚙️ Express | 🗄️ PostgreSQL |
-| ⚡ JavaScript | ⚙️ PHP | 🗄️ MongoDB |
-| ⚛️ React | ⚙️ Laravel | |
-| 🅱️ Bootstrap | ⚙️ Django | |
+| Backend | Frontend | Base de Datos | Reportes |
+|:-------:|:--------:|:-------------:|:--------:|
+| ☕ Java 17 | 🧩 Thymeleaf | 🗄️ MySQL | 📄 JasperReports |
+| 🌱 Spring Boot 4 | 🎨 HTML/CSS/JS | | |
+| 🗃️ Spring Data JPA | | | |
 
 </div>
 
@@ -74,11 +64,9 @@
 
 ### Prerrequisitos
 
-Antes de comenzar, asegúrate de tener instalado:
-
-- 📦 Node.js (v14 o superior)
-- 🗄️ Base de datos (MySQL/PostgreSQL/MongoDB)
-- 🔧 npm o yarn
+- ☕ Java 17
+- 🧰 Maven (o usar `./mvnw`)
+- 🗄️ MySQL
 
 ### Pasos de instalación
 
@@ -89,41 +77,32 @@ git clone https://github.com/Enmvnuel/gestion-academica.git
 # 2️⃣ Entrar al directorio
 cd gestion-academica
 
-# 3️⃣ Instalar dependencias
-npm install
+# 3️⃣ Crear la base de datos (opcional, usando script)
+mysql -u root -p < src/main/resources/query.sql
 
-# 4️⃣ Configurar variables de entorno
-cp .env.example .env
+# 4️⃣ Ajustar credenciales en application.properties
+#    (src/main/resources/application.properties)
 
-# 5️⃣ Configurar la base de datos
-npm run migrate
-
-# 6️⃣ Iniciar el servidor
-npm start
+# 5️⃣ Ejecutar la aplicación
+./mvnw spring-boot:run
 ```
+
+La aplicación estará disponible en: `http://localhost:8080`
 
 ---
 
 ## 🚀 Uso
 
-### Iniciar el servidor de desarrollo
-
-```bash
-npm run dev
-```
-
-El servidor estará disponible en: `http://localhost:3000`
-
 ### Credenciales de prueba
 
-> ⚠️ **Nota de Seguridad**: Estas son credenciales de ejemplo para entornos de desarrollo únicamente. 
-> En producción, asegúrate de cambiar todas las contraseñas y usar credenciales seguras.
+> ⚠️ **Nota**: Estas credenciales están en el script `query.sql` para uso en desarrollo.
 
 | Rol | Usuario | Contraseña |
 |-----|---------|------------|
-| 👨‍💼 Admin | admin@escuela.com | Admin@2024! |
-| 👨‍🏫 Docente | docente@escuela.com | Docente@2024! |
-| 👨‍🎓 Estudiante | estudiante@escuela.com | Estudiante@2024! |
+| 👨‍💼 Admin | admin | admin123 |
+| 👨‍🏫 Docente | profe | profe123 |
+| 👨‍🎓 Estudiante | jperez | alumno123 |
+| 👨‍🎓 Estudiante | mgomez | alumno123 |
 
 ---
 
@@ -131,56 +110,48 @@ El servidor estará disponible en: `http://localhost:3000`
 
 ```
 gestion-academica/
-├── 📁 src/
-│   ├── 📁 controllers/    # Controladores CRUD
-│   ├── 📁 models/         # Modelos de datos
-│   ├── 📁 routes/         # Rutas de la API
-│   ├── 📁 views/          # Vistas del frontend
-│   └── 📁 middlewares/    # Middlewares de autenticación
-├── 📁 public/             # Archivos estáticos
-├── 📁 config/             # Configuraciones
-├── 📁 tests/              # Pruebas
-├── 📄 package.json
-└── 📄 README.md
+├── src/
+│   ├── main/
+│   │   ├── java/com/cibertec/gestionacademica/
+│   │   │   ├── controller/   # Controladores MVC
+│   │   │   ├── model/        # Entidades JPA
+│   │   │   ├── repository/   # Repositorios
+│   │   │   └── service/      # Lógica de negocio
+│   │   └── resources/
+│   │       ├── templates/    # Vistas Thymeleaf
+│   │       ├── static/       # CSS/JS
+│   │       └── reportes/     # Plantillas JasperReports
+│   └── test/                 # Pruebas
+├── pom.xml
+└── README.md
 ```
 
 ---
 
 ## 🔧 Operaciones CRUD
 
-### 👥 Usuarios
-- ✏️ **Create**: Registrar nuevos usuarios (estudiantes, docentes, admins)
-- 👁️ **Read**: Consultar información de usuarios
-- ✍️ **Update**: Actualizar datos de perfil
-- 🗑️ **Delete**: Eliminar usuarios del sistema
+### 👥 Usuarios (Docentes/Estudiantes)
+- ✏️ **Create**: Registrar docentes y estudiantes
+- 👁️ **Read**: Consultar información
+- ✍️ **Update**: Actualizar datos
+- 🗑️ **Delete**: Eliminar registros
 
 ### 📚 Cursos
-- ✏️ **Create**: Crear nuevos cursos y asignaturas
-- 👁️ **Read**: Visualizar información de cursos
+- ✏️ **Create**: Crear cursos y asignaturas
+- 👁️ **Read**: Visualizar cursos
 - ✍️ **Update**: Modificar detalles del curso
 - 🗑️ **Delete**: Eliminar cursos
 
-### 📊 Calificaciones
-- ✏️ **Create**: Registrar nuevas calificaciones
-- 👁️ **Read**: Consultar historial de notas
-- ✍️ **Update**: Modificar calificaciones
-- 🗑️ **Delete**: Eliminar registros de notas
+### 📝 Matrículas y Notas
+- ✏️ **Create**: Registrar matrículas y calificaciones
+- 👁️ **Read**: Consultar matrículas y notas
+- ✍️ **Update**: Actualizar registros
+- 🗑️ **Delete**: Anular registros
 
 ---
 
 ## 🎨 Capturas de Pantalla
 
-### Dashboard de Administrador
-```
-🖥️ [Próximamente]
-```
-
-### Panel de Docente
-```
-🖥️ [Próximamente]
-```
-
-### Portal del Estudiante
 ```
 🖥️ [Próximamente]
 ```
@@ -215,7 +186,7 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más det
 
 ## 📞 Contacto
 
-¿Tienes preguntas o sugerencias? 
+¿Tienes preguntas o sugerencias?
 
 - 💬 Issues: [GitHub Issues](https://github.com/Enmvnuel/gestion-academica/issues)
 - 🌐 Discusiones: [GitHub Discussions](https://github.com/Enmvnuel/gestion-academica/discussions)
