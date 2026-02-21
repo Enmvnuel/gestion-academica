@@ -1,0 +1,79 @@
+/* Paleta de colores principal */
+:root {
+    --bg-color: #F4F6F9;
+    --text-main: #2C3E50;
+    --accent: #16A085;
+    --accent-hover: #1ABC9C;
+    --danger: #E74C3C;
+    --surface: #FFFFFF;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container-main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Tarjetas y Contenedores */
+.card {
+    background-color: var(--surface);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Botones */
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--accent);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-hover);
+}
+
+.btn-danger {
+    background-color: var(--danger);
+    color: white;
+}
+
+/* Tablas */
+.table-custom {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.table-custom th, .table-custom td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.table-custom th {
+    background-color: var(--text-main);
+    color: white;
+}
+
+.table-custom tr:hover {
+    background-color: #f1f1f1;
+}

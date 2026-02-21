@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Buscar Matrícula</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div th:replace="~{layout/header :: header}"></div>
+    
+    <div class="d-flex">
+        <div th:replace="~{layout/sidebar :: sidebar}"></div>
+        
+        <main class="flex-grow-1 p-4 bg-light">
+            <h3 class="text-secondary fw-bold mb-4 border-start border-4 border-primary ps-2">Búsqueda de Matrículas</h3>
+            
+            <div class="card p-4 shadow-sm border-0 mb-4 w-50">
+                <form th:action="@{/consultas/matricula}" method="get" class="d-flex gap-2">
+                    <input type="text" name="dni" class="form-control" placeholder="Ingrese el DNI del Estudiante" maxlength="8" required>
+                    <button type="submit" class="btn btn-primary px-4">Buscar</button>
+                </form>
+            </div>
+
+            <div th:if="${resultados != null}" class="card p-3 shadow-sm border-0">
+                <h5 class="text-primary mb-3">Resultados de la Búsqueda</h5>
+                
+                <div th:if="${#lists.isEmpty(resultados)}" class="alert alert-warning">
+                    No se encontraron matrículas para el DNI ingresado.
+                </div>
+                
+                <table th:if="${not #lists.isEmpty(resultados)}" class="table table-hover table-custom">
+                    <thead>
+                        <tr>
+                            <th>N° Matrícula</th>
+                            <th>Fecha de Registro</th>
+                            <th>Estado</th>
+                            <th>Estudiante</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="m : ${resultados}">
+                            <td class="fw-bold" th:text="${m.id}"></td>
+                            <td th:text="${m.fechaRegistro}"></td>
+                            <td>
+                                <span class="badge bg-success" th:text="${m.estado}"></span>
+                            </td>
+                            <td th:text="${m.estudiante.nombres + ' ' + m.estudiante.apellidos}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
