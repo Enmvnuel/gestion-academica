@@ -3,6 +3,7 @@ package com.cibertec.gestionacademica.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.cibertec.gestionacademica.model.Docente;
 import com.cibertec.gestionacademica.service.DocenteService;
 
@@ -29,8 +30,23 @@ public class DocenteController {
     }
 
     @PostMapping("/guardar")
-    public String guardar(@ModelAttribute Docente docente) {
+    public String guardar(@ModelAttribute Docente docente, RedirectAttributes attributes) {
         docenteService.guardar(docente);
+        attributes.addFlashAttribute("mensaje", "Docente guardado con éxito");
+        return "redirect:/docentes";
+    }
+
+    @GetMapping("/editar/{id}")
+    public String editar(@PathVariable Integer id, Model model) {
+        Docente docente = docenteService.buscarPorId(id);
+        model.addAttribute("docente", docente);
+        return "mantenimientos/docentes/form_docente";
+    }
+
+    @GetMapping("/eliminar/{id}")
+    public String eliminar(@PathVariable Integer id, RedirectAttributes attributes) {
+        docenteService.eliminar(id);
+        attributes.addFlashAttribute("mensaje", "Docente eliminado con éxito");
         return "redirect:/docentes";
     }
 }

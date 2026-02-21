@@ -3,6 +3,7 @@ package com.cibertec.gestionacademica.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.cibertec.gestionacademica.model.Curso;
 import com.cibertec.gestionacademica.service.CursoService;
 
@@ -29,8 +30,23 @@ public class CursoController {
     }
 
     @PostMapping("/guardar")
-    public String guardar(@ModelAttribute Curso curso) {
+    public String guardar(@ModelAttribute Curso curso, RedirectAttributes attributes) {
         cursoService.guardar(curso);
+        attributes.addFlashAttribute("mensaje", "Curso guardado con éxito");
+        return "redirect:/cursos";
+    }
+
+    @GetMapping("/editar/{id}")
+    public String editar(@PathVariable Integer id, Model model) {
+        Curso curso = cursoService.buscarPorId(id);
+        model.addAttribute("curso", curso);
+        return "mantenimientos/cursos/form_curso";
+    }
+
+    @GetMapping("/eliminar/{id}")
+    public String eliminar(@PathVariable Integer id, RedirectAttributes attributes) {
+        cursoService.eliminar(id);
+        attributes.addFlashAttribute("mensaje", "Curso eliminado con éxito");
         return "redirect:/cursos";
     }
 }
