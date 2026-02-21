@@ -3,9 +3,10 @@
 <body>
     <header th:fragment="header" class="navbar navbar-expand-lg navbar-dark" style="background-color: var(--text-main);">
         <div class="container-fluid">
-            <a class="navbar-brand fw-bold" th:href="@{/}">
-                <i class="bi bi-mortarboard-fill me-2"></i> CIBERTEC - Académico
-            </a>
+			<a class="navbar-brand fw-bold" th:href="@{/}">
+			    <img th:src="@{/img/logo.png}" alt="Logo" width="30" height="30" class="d-inline-block align-top me-2">
+			    CIBERTEC - Académico
+			</a>
             
             <div class="d-flex align-items-center text-white">
                 <span class="me-3" th:if="${session.usuarioLogueado != null}">
