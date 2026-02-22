@@ -30,6 +30,7 @@ public class LoginController {
         
         if (usuario != null) {
             session.setAttribute("usuarioLogueado", usuario);
+            session.setAttribute("rol", usuario.getRol());
             // Ruteo por roles
             if ("Admin".equals(usuario.getRol())) return "redirect:/dashboard/admin";
             if ("Docente".equals(usuario.getRol())) return "redirect:/dashboard/docente";
