@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="sidebar" class="bg-white border-end" style="min-height: calc(100vh - 56px); width: 250px;">
+        <div class="list-group list-group-flush pt-3">
+            
+            <a href="#" class="list-group-item list-group-item-action fw-bold text-secondary">MENÚ PRINCIPAL</a>
+            
+            <div th:if="${session.usuarioLogueado != null and session.usuarioLogueado.rol == 'Admin'}">
+                <a th:href="@{/estudiantes}" class="list-group-item list-group-item-action">Gestión de Estudiantes</a>
+                <a th:href="@{/docentes}" class="list-group-item list-group-item-action">Gestión de Docentes</a>
+                <a th:href="@{/cursos}" class="list-group-item list-group-item-action">Gestión de Cursos</a>
+            </div>
+
+            <div th:if="${session.usuarioLogueado != null and (session.usuarioLogueado.rol == 'Admin' or session.usuarioLogueado.rol == 'Estudiante')}">
+                <a th:href="@{/matriculas/nueva}" class="list-group-item list-group-item-action">Registro de Matrícula</a>
+            </div>
+
+            <a th:href="@{/consultas/matricula}" class="list-group-item list-group-item-action">Buscar Matrículas</a>
+            
+            <div th:if="${session.usuarioLogueado != null and session.usuarioLogueado.rol != 'Estudiante'}">
+                <a th:href="@{/reportes/matriculados}" target="_blank" class="list-group-item list-group-item-action text-primary">Reporte: Matriculados</a>
+                <a th:href="@{/reportes/notas}" target="_blank" class="list-group-item list-group-item-action text-primary">Reporte: Notas</a>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>

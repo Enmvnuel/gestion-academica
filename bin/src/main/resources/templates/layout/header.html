@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <header th:fragment="header" class="navbar navbar-expand-lg navbar-dark" style="background-color: var(--text-main);">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" th:href="@{/}">
+                <i class="bi bi-mortarboard-fill me-2"></i> CIBERTEC - Académico
+            </a>
+            
+            <div class="d-flex align-items-center text-white">
+                <span class="me-3" th:if="${session.usuarioLogueado != null}">
+                    Bienvenido, <strong th:text="${session.usuarioLogueado.username}">Usuario</strong> 
+                    (<span th:text="${session.usuarioLogueado.rol}">Rol</span>)
+                </span>
+                <a th:href="@{/logout}" class="btn btn-sm btn-danger">Cerrar Sesión</a>
+            </div>
+        </div>
+    </header>
+</body>
+</html>

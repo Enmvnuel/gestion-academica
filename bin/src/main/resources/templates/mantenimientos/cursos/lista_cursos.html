@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Cursos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div th:replace="~{layout/header :: header}"></div>
+    <div class="d-flex">
+        <div th:replace="~{layout/sidebar :: sidebar}"></div>
+        <main class="flex-grow-1 p-4 bg-light">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="text-secondary fw-bold">Lista de Cursos</h3>
+                <a th:href="@{/cursos/nuevo}" class="btn btn-primary">+ Nuevo Curso</a>
+            </div>
+
+            <!-- Alerta de mensaje -->
+            <div th:if="${mensaje}" class="alert alert-success alert-dismissible fade show" role="alert">
+                <span th:text="${mensaje}"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <div class="card p-3 shadow-sm border-0">
+                <table class="table table-hover table-custom">
+                    <thead>
+                        <tr>
+                            <th>Nombre del Curso</th>
+                            <th>Créditos</th>
+                            <th>Ciclo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="c : ${cursos}">
+                            <td th:text="${c.nombre}" class="fw-bold"></td>
+                            <td th:text="${c.creditos}"></td>
+                            <td th:text="${c.ciclo}"></td>
+                            <td>
+                                <a th:href="@{/cursos/editar/{id}(id=${c.id})}" class="btn btn-sm btn-outline-primary me-1">Editar</a>
+                                <a th:href="@{/cursos/eliminar/{id}(id=${c.id})}" class="btn btn-sm btn-outline-danger"
+                                   onclick="return confirm('¿Estás seguro de eliminar este curso?');">Eliminar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
