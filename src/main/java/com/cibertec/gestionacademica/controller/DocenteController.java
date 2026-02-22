@@ -37,8 +37,12 @@ public class DocenteController {
 	}
 
 	@GetMapping("/editar/{id}")
-	public String editar(@PathVariable Integer id, Model model) {
+	public String editar(@PathVariable Integer id, Model model, RedirectAttributes attributes) {
 		Docente docente = docenteService.buscarPorId(id);
+		if (docente == null) {
+			attributes.addFlashAttribute("error", "Docente no encontrado.");
+			return "redirect:/docentes";
+		}
 		model.addAttribute("docente", docente);
 		return "mantenimientos/docentes/form_docente";
 	}

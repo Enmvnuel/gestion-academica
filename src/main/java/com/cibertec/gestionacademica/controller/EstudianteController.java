@@ -39,9 +39,13 @@ public class EstudianteController {
 
 	// MÉTODO EDITAR CORREGIDO
 	@GetMapping("/editar/{id}")
-	public String editar(@PathVariable Integer id, Model model) {
+	public String editar(@PathVariable Integer id, Model model, RedirectAttributes attributes) {
 
 		Estudiante estudiante = estudianteService.buscarPorId(id);
+		if (estudiante == null) {
+			attributes.addFlashAttribute("error", "Estudiante no encontrado.");
+			return "redirect:/estudiantes";
+		}
 		model.addAttribute("estudiante", estudiante);
 		return "mantenimientos/estudiantes/form_estudiante";
 	}
