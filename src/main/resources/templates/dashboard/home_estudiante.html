@@ -30,7 +30,7 @@
                     <div class="card shadow-sm text-center p-4">
                         <h5 class="fw-bold">Mis Calificaciones</h5>
                         <p class="text-muted">Revise su récord académico histórico y sus promedios.</p>
-                        <a th:href="@{/consultas/notas/1}" class="btn btn-outline-info">Ver Notas</a>
+                        <a th:href="@{/consultas/notas/{id}(id=${estudianteId})}" class="btn btn-outline-info">Ver Notas</a>
                     </div>
                 </div>
             </div>
