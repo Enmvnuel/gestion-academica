@@ -45,8 +45,13 @@ public class CursoController {
 
     @GetMapping("/eliminar/{id}")
     public String eliminar(@PathVariable Integer id, RedirectAttributes attributes) {
-        cursoService.eliminar(id);
-        attributes.addFlashAttribute("mensaje", "Curso eliminado con éxito");
+        try {
+            cursoService.eliminar(id);
+            attributes.addFlashAttribute("mensaje", "Curso eliminado con éxito");
+        } catch (Exception e) {
+            attributes.addFlashAttribute("error",
+                    "No se puede eliminar el curso porque está asignado a matrículas o registros asociados.");
+        }
         return "redirect:/cursos";
     }
 }

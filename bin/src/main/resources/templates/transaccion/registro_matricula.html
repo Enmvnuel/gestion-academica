@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Matrícula</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div th:replace="~{layout/header :: header}"></div>
+    
+    <div class="d-flex">
+        <div th:replace="~{layout/sidebar :: sidebar}"></div>
+        
+        <main class="flex-grow-1 p-4 bg-light">
+            <h3 class="text-secondary fw-bold mb-4 border-start border-4 border-primary ps-2">Proceso de Matrícula</h3>
+
+            <!-- Alerta de mensaje flash o param exito -->
+            <div th:if="${mensaje}" class="alert alert-success alert-dismissible fade show" role="alert">
+                <span th:text="${mensaje}"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <div th:if="${param.exito}" class="alert alert-success alert-dismissible fade show" role="alert">
+                ¡Matrícula registrada correctamente en la base de datos!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <form th:action="@{/matriculas/registrar}" th:object="${matricula}" method="post">
+                
+                <div class="card p-4 shadow-sm border-0 mb-4">
+                    <h5 class="fw-bold mb-3 text-primary">1. Datos del Estudiante</h5>
+                    <div class="mb-3 w-50">
+                        <label class="form-label">Seleccionar Estudiante:</label>
+                        <select th:field="*{estudiante.id}" class="form-select" required>
+                            <option value="">-- Seleccione un estudiante --</option>
+                            <option th:each="e : ${estudiantes}" 
+                                    th:value="${e.id}" 
+                                    th:text="${e.dni + ' - ' + e.nombres + ' ' + e.apellidos}"></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="card p-4 shadow-sm border-0 mb-4">
+                    <h5 class="fw-bold mb-3 text-primary">2. Selección de Cursos (Detalle)</h5>
+                    <p class="text-muted small">Seleccione los cursos a los que desea matricular al estudiante.</p>
+                    
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="text-center" style="width: 50px;">✔</th>
+                                    <th>Curso</th>
+                                    <th>Créditos</th>
+                                    <th>Ciclo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="c, stat : ${cursos}">
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="checkbox" 
+                                               th:name="|detalles[${stat.index}].curso.id|" 
+                                               th:value="${c.id}">
+                                    </td>
+                                    <td class="fw-bold" th:text="${c.nombre}"></td>
+                                    <td th:text="${c.creditos}"></td>
+                                    <td th:text="${c.ciclo}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="text-end">
+                    <a th:href="@{/}" class="btn btn-secondary me-2">Cancelar</a>
+                    <button type="submit" class="btn btn-success px-4 fw-bold">Confirmar Matrícula</button>
+                </div>
+            </form>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

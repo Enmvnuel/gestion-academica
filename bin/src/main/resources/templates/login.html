@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cibertec Gestión Académica</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        body { display: flex; align-items: center; justify-content: center; height: 100vh; background-color: var(--bg-color); }
+        .login-card { width: 100%; max-width: 400px; padding: 40px; border-radius: 10px; background: var(--surface); box-shadow: 0 10px 25px rgba(0,0,0,0.1); opacity: 0; }
+        .login-header { text-align: center; margin-bottom: 30px; color: var(--text-main); }
+    </style>
+</head>
+<body>
+
+    <div class="login-card" id="loginBox">
+        <div class="login-header">
+            <h3>Gestión Académica</h3>
+            <p class="text-muted">Inicie sesión para continuar</p>
+        </div>
+
+        <div th:if="${error}" class="alert alert-danger text-center" th:text="${error}"></div>
+
+        <form th:action="@{/login}" method="post">
+            <div class="mb-3">
+                <label class="form-label fw-bold">Usuario</label>
+                <input type="text" name="username" class="form-control" required autofocus placeholder="Ingrese su usuario">
+            </div>
+            <div class="mb-4">
+                <label class="form-label fw-bold">Contraseña</label>
+                <input type="password" name="password" class="form-control" required placeholder="Ingrese su contraseña">
+            </div>
+            <button type="submit" class="btn btn-primary w-100 py-2">Ingresar al Sistema</button>
+        </form>
+    </div>
+
+    <script>
+        // animacion suave de entrada
+        gsap.to("#loginBox", { opacity: 1, y: -20, duration: 0.8, ease: "power2.out", startAt: { y: 20 } });
+    </script>
+</body>
+</html>
