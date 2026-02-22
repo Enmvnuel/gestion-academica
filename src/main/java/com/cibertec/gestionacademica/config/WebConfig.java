@@ -16,8 +16,8 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        // Registramos el interceptor para que vigile todas las rutas de mantenimientos
+        // Registramos el interceptor para que vigile las rutas de cursos, docentes y estudiantes
         registry.addInterceptor(securityInterceptor)
-                .addPathPatterns("/mantenimientos/**");
+                .addPathPatterns("/cursos/**", "/docentes/**", "/estudiantes/**");
     }
 }
